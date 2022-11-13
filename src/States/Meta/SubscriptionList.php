@@ -80,7 +80,7 @@ class SubscriptionList implements IteratorAggregate, ArrayAccess, Countable
      *
      * @return Subscription
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->subscriptions[$offset];
     }
