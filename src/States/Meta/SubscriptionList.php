@@ -13,6 +13,7 @@ use ArrayIterator;
 use Countable;
 use IteratorAggregate;
 use Stomp\Transport\Frame;
+use Traversable;
 
 /**
  * SubscriptionList meta info for active subscriptions.
@@ -59,7 +60,7 @@ class SubscriptionList implements IteratorAggregate, ArrayAccess, Countable
      *
      * @return \Iterator|Subscription[]
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->subscriptions);
     }
@@ -69,7 +70,7 @@ class SubscriptionList implements IteratorAggregate, ArrayAccess, Countable
      *
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->subscriptions[$offset]);
     }
@@ -87,7 +88,7 @@ class SubscriptionList implements IteratorAggregate, ArrayAccess, Countable
     /**
      * @inheritdoc
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->subscriptions[$offset] = $value;
     }
@@ -95,7 +96,7 @@ class SubscriptionList implements IteratorAggregate, ArrayAccess, Countable
     /**
      * @inheritdoc
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->subscriptions[$offset]);
     }
@@ -103,7 +104,7 @@ class SubscriptionList implements IteratorAggregate, ArrayAccess, Countable
     /**
      * @inheritdoc
      */
-    public function count()
+    public function count(): int
     {
         return count($this->subscriptions);
     }
